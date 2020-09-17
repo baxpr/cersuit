@@ -19,8 +19,8 @@ suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp),'keeptempfiles',1);
 
 % Estimate the atlas space warp
 job = struct();
-job.subjND(1).gray = {'t1_seg1.nii'};
-job.subjND(1).white = {'t1_seg2.nii'};
+job.subjND(1).gray = {'c_t1_seg1.nii'};
+job.subjND(1).white = {'c_t1_seg2.nii'};
 job.subjND(1).isolation = {'c_t1_pcereb.nii'};
 suit_normalize_dartel(job);
 
@@ -38,7 +38,7 @@ suit_reslice_dartel(job);
 job = struct();
 job.subj.affineTr = {'Affine_t1_seg1.mat'};
 job.subj.flowfield = {'u_a_t1_seg1.nii'};
-job.subj.resample = {'t1_seg1.nii'};
+job.subj.resample = {'c_t1_seg1.nii'};
 job.subj.mask = {'c_t1_pcereb.nii'};
 job.interp = 1;
 job.jactransf = 1;
