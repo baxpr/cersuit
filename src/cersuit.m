@@ -5,10 +5,10 @@ function cersuit(varargin)
 P = inputParser;
 
 % T1 image (.nii.gz)
-addOptional(P,'wt1_niigz','../INPUTS/wmt1.nii.gz');
+addOptional(P,'t1_niigz','../INPUTS/T1.nii.gz');
 
-% Smoothing to apply to connectivity maps
-addOptional(P,'fwhm','6');
+% Masking threshold for suit_isolate_seg
+addOptional(P,'maskp','0.2');
 
 % Subject info if on XNAT
 addOptional(P,'project','UNK_PROJ');
@@ -17,9 +17,9 @@ addOptional(P,'session','UNK_SESS');
 addOptional(P,'scan','UNK_SCAN');
 
 % Change paths to match test environment if needed
-addOptional(P,'magick_path','/usr/bin');
-addOptional(P,'src_path','/opt/mniconn/src');
-addOptional(P,'fsl_path','/usr/local/fsl/bin');
+addOptional(P,'fsl_dir','/usr/local/fsl');
+addOptional(P,'src_dir','/opt/cersuit/src');
+%addOptional(P,'magick_path','/usr/bin');
 
 % Where to store outputs
 addOptional(P,'out_dir','../OUTPUTS');
@@ -30,7 +30,7 @@ disp(P.Results)
 
 
 %% Process
-mniconn_main(P.Results);
+cersuit_main(P.Results);
 
 
 %% Exit
