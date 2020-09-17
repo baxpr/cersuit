@@ -13,6 +13,7 @@ system(['FSLDIR=' inp.fsl_dir ' ' inp.src_dir '/initial_reorient.sh']);
 
 % We need SPM running
 spm('fmri');
+spm_dir = fileparts(which('spm'));
 
 % Segment the cerebellum
 suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp));
@@ -48,14 +49,15 @@ suit_reslice_dartel(job);
 job = struct();
 job.Affine = {'Affine_t1_seg1.mat'};
 job.flowfield = {'u_a_t1_seg1.nii'};
-job.resample = {which('Lobules-SUIT.nii')};
+job.resample = {[spm_dir '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii']};
 job.ref = {'t1.nii'};
 job.interp = 0;
 suit_reslice_dartel_inv(job);
 
-% Regional voxel counts and volumes in subject space
+% Regional voxel counts and volumes in subject space. suit_vol does not
+% compute the voxel volume correctly, so we use our own code.
 V = suit_vol('iw_Lobules-SUIT_u_a_t1_seg1.nii', 'Atlas');
 V_data = [(V.vox)' (V.vmm)'];
-dlmwrite('VolumeData', V_data);
+dlmwrite('volume_data.csv', V_data);
 
 
