@@ -14,6 +14,48 @@ system(['FSLDIR=' inp.fsl_dir ' ' inp.src_dir '/initial_reorient.sh']);
 % We need SPM running
 spm('fmri');
 
-% First segmentation step of SUIT
+% Segment the cerebellum
 suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp));
+
+% Estimate the atlas space warp
+job = struct();
+job.subjND(1).gray = {'t1_seg1.nii'};
+job.subjND(1).white = {'t1_seg2.nii'};
+job.subjND(1).isolation = {'c_t1_pcereb.nii'};
+suit_normalize_dartel(job);
+
+% Create T1 image in atlas space
+job = struct();
+job.subj.affineTr = {'Affine_t1_seg1.mat'};
+job.subj.flowfield = {'u_a_t1_seg1.nii'};
+job.subj.resample = {'t1.nii'};
+job.subj.mask = {'c_t1_pcereb.nii'};
+job.interp = 1;
+job.jactransf = 0;
+suit_reslice_dartel(job);
+
+% Create modulated grey matter image in atlas space
+job = struct();
+job.subj.affineTr = {'Affine_t1_seg1.mat'};
+job.subj.flowfield = {'u_a_t1_seg1.nii'};
+job.subj.resample = {'t1_seg1.nii'};
+job.subj.mask = {'c_t1_pcereb.nii'};
+job.interp = 1;
+job.jactransf = 1;
+suit_reslice_dartel(job);
+
+% Resample the atlas to subject space
+job = struct();
+job.Affine = {'Affine_t1_seg1.mat'};
+job.flowfield = {'u_a_t1_seg1.nii'};
+job.resample = {which('Lobules-SUIT.nii')};
+job.ref = {'t1.nii'};
+job.interp = 0;
+suit_reslice_dartel_inv(job);
+
+% Regional voxel counts and volumes in subject space
+V = suit_vol('iw_Lobules-SUIT_u_a_t1_seg1.nii', 'Atlas');
+V_data = [(V.vox)' (V.vmm)'];
+dlmwrite('VolumeData', V_data);
+
 
