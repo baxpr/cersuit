@@ -1,7 +1,7 @@
-%function regional_volumes(out_dir,spm_dir)
+function regional_volumes(out_dir)
 
 % Load atlas labels, assuming the Lobules-SUIT atlas
-copyfile([spm_dir '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii.lut'] ,...
+copyfile([spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii.lut'] ,...
 	[out_dir '/iw_Lobules-SUIT_u_a_t1_seg1-lut.txt']);
 labels = readtable([out_dir '/iw_Lobules-SUIT_u_a_t1_seg1-lut.txt'], ...
 	'Delimiter','space','ReadVariableNames',false);
