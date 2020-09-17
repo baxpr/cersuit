@@ -15,7 +15,7 @@ system(['FSLDIR=' inp.fsl_dir ' ' inp.src_dir '/initial_reorient.sh']);
 spm('fmri');
 
 % Segment the cerebellum
-suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp));
+suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp),'keeptempfiles',1);
 
 % Estimate the atlas space warp
 job = struct();
