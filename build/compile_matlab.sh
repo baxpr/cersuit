@@ -5,20 +5,20 @@
 # are working on OS X.
 #
 # We require on our compilation machine:
-#     Matlab 2019a, including compiler, with license
+#     Matlab 2019b, including compiler, with license
 #     Installation of SPM12, https://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 #
-# The matlab version matters. If we compile with R2019a, it will only run under 
-# the R2019a Runtime.
+# The matlab version matters. If we compile with R2019b, it will only run under 
+# the R2019b Runtime.
 #
 # The SPM12 version also matters. The compilation code is written for r7771.
 
 
 # Where to find SPM12 on our compilation machine
-SPM_PATH=/wkdir/external/spm12
+SPM_PATH=/wkdir/src/external/spm12
 
 # We may need to add Matlab to the path on the compilation machine
-export PATH=/usr/local/MATLAB/R2019a/bin:${PATH}
+export PATH=/usr/local/MATLAB/R2019b/bin:${PATH}
 
 # SPM external stuff often causes issues with compilation. We don't need any of it 
 # here, so delete. Example: fieldtrip module has some compatibility functions that
