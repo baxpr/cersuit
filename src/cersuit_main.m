@@ -71,7 +71,7 @@ job.Affine = {'Affine_c_t1_seg1.mat'};
 job.flowfield = {'u_a_c_t1_seg1.nii'};
 job.subj.mask = {'c_t1_pcereb.nii'};
 job.resample = {[spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii']};
-job.ref = {'t1.nii'};
+job.ref = {'c_t1.nii'};
 job.interp = 0;
 suit_reslice_dartel_inv(job);
 
