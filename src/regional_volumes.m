@@ -21,8 +21,10 @@ for k = 1:height(labels)
 	labels.Total_Volume_mm3(k,1) = round(voxvol*labels.Total_Voxels(k,1), 3);
 	labels.Gray_Voxels(k,1) = sum(gm(seg(:)==labels.Label(k)));
 	labels.Gray_Volume_mm3(k,1) = round(voxvol*labels.Gray_Voxels(k,1), 3);
+	labels.Gray_Voxels(k,1) = round(labels.Gray_Voxels(k,1),3);
 	labels.White_Voxels(k,1) = sum(wm(seg(:)==labels.Label(k)));
 	labels.White_Volume_mm3(k,1) = round(voxvol*labels.White_Voxels(k,1), 3);
+	labels.White_Voxels(k,1) = round(labels.White_Voxels(k,1),3);
 end
 
 % Store labels and volumes to file
