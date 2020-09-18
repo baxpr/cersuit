@@ -32,10 +32,12 @@ for m = {'t1.nii','c_t1_seg1.nii','c_t1_seg2.nii'}
 	job = struct();
 	job.subj.affineTr = {'Affine_c_t1_seg1.mat'};
 	job.subj.flowfield = {'u_a_c_t1_seg1.nii'};
+	job.subj.mask = {'c_t1_pcereb.nii'};
 	job.subj.resample = m(1);
 	job.interp = 1;
 	job.jactransf = 0;
 	suit_reslice_dartel(job);
+	movefile(['wd' m{1}],['w' m{1}]);
 end
 system(['ls -lt ' out_dir]);
 
@@ -44,10 +46,12 @@ disp('Resample mask')
 job = struct();
 job.subj.affineTr = {'Affine_c_t1_seg1.mat'};
 job.subj.flowfield = {'u_a_c_t1_seg1.nii'};
+job.subj.mask = {'c_t1_pcereb.nii'};
 job.subj.resample = {'c_t1_pcereb.nii'};
 job.interp = 1;
 job.jactransf = 0;
 suit_reslice_dartel(job);
+movefile('wdc_t1_pcereb.nii','wc_t1_pcereb.nii');
 system(['ls -lt ' out_dir]);
 
 % Create modulated grey and white matter images in atlas space
@@ -56,7 +60,7 @@ for m = {'c_t1_seg1.nii','c_t1_seg2.nii'}
 	job = struct();
 	job.subj.affineTr = {'Affine_c_t1_seg1.mat'};
 	job.subj.flowfield = {'u_a_c_t1_seg1.nii'};
-	job.subj.resample = {'c_t1_seg1.nii'};
+	job.subj.resample = m(1);
 	job.subj.mask = {'c_t1_pcereb.nii'};
 	job.interp = 1;
 	job.jactransf = 1;
@@ -70,6 +74,7 @@ disp('Resample atlas')
 job = struct();
 job.Affine = {'Affine_c_t1_seg1.mat'};
 job.flowfield = {'u_a_c_t1_seg1.nii'};
+job.subj.mask = {'c_t1_pcereb.nii'};
 job.resample = {[spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii']};
 job.ref = {'t1.nii'};
 job.interp = 0;
