@@ -46,7 +46,7 @@ job.subj.affineTr = {'Affine_c_t1_seg1.mat'};
 job.subj.flowfield = {'u_a_c_t1_seg1.nii'};
 job.subj.mask = {'c_t1_pcereb.nii'};
 job.subj.resample = {'c_t1_pcereb.nii'};
-job.interp = 1;
+job.interp = 0;
 job.jactransf = 0;
 suit_reslice_dartel(job);
 movefile('wdc_t1_pcereb.nii','wc_t1_pcereb.nii');
