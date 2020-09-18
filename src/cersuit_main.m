@@ -84,5 +84,8 @@ copyfile([spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii'],out_dir);
 disp('Regional volumes')
 regional_volumes(out_dir)
 
+% Make PDF
+system(['FSLDIR=' inp.fsl_dir ' cd ' out_dir ' && ' inp.src_dir '/make_pdf.sh']);
+
 % Clean up
 organize_outputs(out_dir)
