@@ -6,6 +6,9 @@
 PATH=${FSLDIR}/bin:${PATH}
 . ${FSLDIR}/etc/fslconf/fsl.sh
 
+# Work in output directory
+cd ${OUTDIR}
+
 # Create views
 fsleyes render -of atlas_over_gray.png \
   --scene ortho --worldLoc 0.0 -56.0 -33.0 --displaySpace world \
@@ -32,7 +35,7 @@ fsleyes render -of mask_over_white.png \
   wc_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 # Combine into single PDF
-${IMMAG_DIR}/montage \
+${IMMAGDIR}/montage \
 -mode concatenate \
 mask_over_gray.png mask_over_white.png \
 atlas_over_gray.png atlas_over_white.png \
@@ -40,7 +43,7 @@ atlas_over_gray.png atlas_over_white.png \
 -border 20 -bordercolor black images.png
 
 info_string="$PROJECT $SUBJECT $SESSION $SCAN"
-${IMMAG_DIR}/convert \
+${IMMAGDIR}/convert \
 -size 2600x3365 xc:white \
 -gravity center \( images.png -resize 2400x \) -composite \
 -gravity North -pointsize 48 -annotate +100+100 \
