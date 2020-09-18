@@ -2,8 +2,8 @@ function regional_volumes(out_dir)
 
 % Load atlas labels, assuming the Lobules-SUIT atlas
 copyfile([spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii.lut'] ,...
-	[out_dir '/iw_Lobules-SUIT_u_a_c_t1_seg1-lut.txt']);
-labels = readtable([out_dir '/iw_Lobules-SUIT_u_a_c_t1_seg1-lut.txt'], ...
+	[out_dir '/iw_Lobules-SUIT-lut.txt']);
+labels = readtable([out_dir '/iw_Lobules-SUIT-lut.txt'], ...
 	'Delimiter','space','ReadVariableNames',false);
 labels = labels(:,{'Var1','Var8'});
 labels.Properties.VariableNames = {'Label','Region'};
