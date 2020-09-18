@@ -16,6 +16,7 @@ spm('fmri');
 
 % Segment the cerebellum
 suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp),'keeptempfiles',1);
+system(['ls -lt ' out_dir '|head']);
 
 % Estimate the atlas space warp
 disp('Estimate warp')
@@ -24,7 +25,7 @@ job.subjND(1).gray = {'c_t1_seg1.nii'};
 job.subjND(1).white = {'c_t1_seg2.nii'};
 job.subjND(1).isolation = {'c_t1_pcereb.nii'};
 suit_normalize_dartel(job);
-system(['ls -lt ' out_dir]);
+system(['ls -lt ' out_dir '|head']);
 
 % Create several images in SUIT atlas space, unmodulated, interpolated
 disp('Resample images')
@@ -39,7 +40,7 @@ for m = {'t1.nii','c_t1_seg1.nii','c_t1_seg2.nii'}
 	suit_reslice_dartel(job);
 	movefile(['wd' m{1}],['w' m{1}]);
 end
-system(['ls -lt ' out_dir]);
+system(['ls -lt ' out_dir '|head']);
 
 % Create cer mask atlas space, unmodulated, not interpolated
 disp('Resample mask')
@@ -52,7 +53,7 @@ job.interp = 1;
 job.jactransf = 0;
 suit_reslice_dartel(job);
 movefile('wdc_t1_pcereb.nii','wc_t1_pcereb.nii');
-system(['ls -lt ' out_dir]);
+system(['ls -lt ' out_dir '|head']);
 
 % Create modulated grey and white matter images in atlas space
 disp('Resample/modulate')
@@ -67,7 +68,7 @@ for m = {'c_t1_seg1.nii','c_t1_seg2.nii'}
 	suit_reslice_dartel(job);
 	system(['ls -lt ' out_dir]);
 end
-system(['ls -lt ' out_dir]);
+system(['ls -lt ' out_dir '|head']);
 
 % Resample the atlas to subject space
 disp('Resample atlas')
@@ -79,7 +80,7 @@ job.resample = {[spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii']};
 job.ref = {'t1.nii'};
 job.interp = 0;
 suit_reslice_dartel_inv(job);
-system(['ls -lt ' out_dir]);
+system(['ls -lt ' out_dir '|head']);
 
 
 % Copy atlas space atlas
@@ -92,6 +93,6 @@ system(['ls -lt ' out_dir]);
 % compute the voxel volume correctly, so we use our own code.
 disp('Regional volumes')
 regional_volumes(out_dir)
-system(['ls -lt ' out_dir]);
+system(['ls -lt ' out_dir '|head']);
 
 
