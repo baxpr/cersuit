@@ -19,7 +19,7 @@ addOptional(P,'scan','UNK_SCAN');
 % Change paths to match test environment if needed
 addOptional(P,'fsl_dir','/usr/local/fsl');
 addOptional(P,'src_dir','/opt/cersuit/src');
-%addOptional(P,'magick_path','/usr/bin');
+addOptional(P,'immag_dir','/usr/bin');
 
 % Where to store outputs
 addOptional(P,'out_dir','../OUTPUTS');
