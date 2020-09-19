@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ubuntu:18.04
 
 %help
-  Compute fMRI connectivity matrices and maps for MNI space ROIs.
+  Cerebellum segmentation with the SUIT toolbox for SPM12.
   Info and usage:
     /opt/cersuit/README.md
 
@@ -25,7 +25,7 @@ From: ubuntu:18.04
 %post
   apt-get update
   apt-get install -y wget unzip zip xvfb ghostscript imagemagick    # Misc tools
-  apt-get install -y openjdk-8-jre libdbus-glib-1-2                 # Matlab/SPM
+  apt-get install -y openjdk-8-jre                                  # Matlab/SPM
   
   # FSL dependencies, h/t https://github.com/MPIB/singularity-fsl
   #    debian vs ubuntu:

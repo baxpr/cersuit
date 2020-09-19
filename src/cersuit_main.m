@@ -12,7 +12,7 @@ system('gunzip t1.nii.gz');
 system(['FSLDIR=' inp.fsl_dir ' ' inp.src_dir '/initial_reorient.sh']);
 
 % We need SPM running
-spm('fmri');
+spm_jobman('initcfg');
 
 % Segment the cerebellum
 suit_isolate_seg({'t1.nii'},'maskp',str2double(inp.maskp),'keeptempfiles',1);

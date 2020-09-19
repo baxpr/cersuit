@@ -7,5 +7,5 @@ singularity shell \
   --bind OUTPUTS:/tmp \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
-  baxpr-cersuit-master-v1.0.0.simg
+  baxpr-cersuit-master-v1.0.3.simg
 
