@@ -7,7 +7,7 @@ singularity run \
   --bind OUTPUTS:/tmp \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
-  baxpr-cersuit-master-v1.0.3.simg \
+  test-v1.0.4.simg \
   out_dir /OUTPUTS \
   t1_niigz /INPUTS/T1.nii.gz \
   maskp 0.2 \
