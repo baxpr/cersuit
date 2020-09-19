@@ -2,6 +2,8 @@
 #
 # PDF for QA check
 
+echo Making PDF
+
 # FSL init
 PATH=${FSLDIR}/bin:${PATH}
 . ${FSLDIR}/etc/fslconf/fsl.sh

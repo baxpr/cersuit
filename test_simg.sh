@@ -3,8 +3,8 @@
 singularity run \
   --contain \
   --cleanenv \
-  --home $(pwd)/INPUTS \
-  --bind /tmp:/tmp \
+  --home $(pwd)/OUTPUTS \
+  --bind OUTPUTS:/tmp \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
   baxpr-cersuit-master-v1.0.0.simg \
