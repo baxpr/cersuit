@@ -81,7 +81,7 @@ Segmented regions in native and atlas space, with lookup table
     SEG_SUIT          Lobules-SUIT.nii.gz
     SEG_LUT           Lobules-SUIT-lut.txt
 
-Volumetry of segmented regions, computed from native space images
+Volumetry of segmented regions, computed from native space images. The "Total" is the volume of the atlas region after transformation to native space. The "Gray" is the sum of voxel gray matter fraction within the atlas region, in native space; similar for "White".
 
     SEG_NATIVE_VOLS   iw_Lobules-SUIT_u_a_c_t1_seg1-volumes.csv
 
