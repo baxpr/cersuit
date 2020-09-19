@@ -47,6 +47,10 @@ Cerebellar segmentation with the [SUIT atlas and toolbox](http://diedrichsenlab.
 
 ## Outputs
 
+PDF report for quality assurance
+
+    PDF               cersuit.pdf
+
 Transformation from native to atlas space
 
     AFFINE            Affine_c_t1_seg1.mat
