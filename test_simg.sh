@@ -7,8 +7,9 @@ singularity run \
   --bind /tmp:/tmp \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
-  container.simg \
-  t1_niigz INPUTS/T1.nii.gz \
+  baxpr-cersuit-master-v1.0.0.simg \
+  out_dir /OUTPUTS \
+  t1_niigz /INPUTS/T1.nii.gz \
   maskp 0.2 \
   project TESTPROJ \
   subject TESTSUBJ \
