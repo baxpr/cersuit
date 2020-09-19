@@ -47,26 +47,37 @@ Cerebellar segmentation with the [SUIT atlas and toolbox](http://diedrichsenlab.
 
 ## Outputs
 
-Transformation from T1 to atlas space
+Transformation from native to atlas space
+
     AFFINE            Affine_c_t1_seg1.mat
     FLOWFIELD         u_a_c_t1_seg1.nii.gz
+
+Cropped T1 in both spaces
 
     T1_CROP_NATIVE    c_t1.nii.gz
     T1_CROP_SUIT      wc_t1.nii.gz
 
+Cerebellum mask, segmented gray matter and white matter volume fraction images in native and atlas space
+
     MASK_NATIVE       c_t1_pcereb.nii.gz
     GRAY_NATIVE       c_t1_seg1.nii.gz
     WHITE_NATIVE      c_t1_seg2.nii.gz
-
     MASK_SUIT         wc_t1_pcereb.nii.gz
     GRAY_SUIT         wc_t1_seg1.nii.gz
     WHITE_SUIT        wc_t1_seg2.nii.gz
 
+Jacobian-modulated gray and white matter images in atlas space
+
     GRAYMOD_SUIT      wdc_t1_seg1.nii.gz
     WHITEMOD_SUIT     wdc_t1_seg2.nii.gz
 
+Segmented regions in native and atlas space, with lookup table
+
     SEG_NATIVE        iw_Lobules-SUIT_u_a_c_t1_seg1.nii.gz
-    SEG_NATIVE_VOLS   iw_Lobules-SUIT_u_a_c_t1_seg1-volumes.csv
     SEG_SUIT          Lobules-SUIT.nii.gz
     SEG_LUT           Lobules-SUIT-lut.txt
+
+Volumetry of segmented regions, computed from native space images
+
+    SEG_NATIVE_VOLS   iw_Lobules-SUIT_u_a_c_t1_seg1-volumes.csv
 
