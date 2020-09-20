@@ -84,7 +84,7 @@ info_string="$PROJECT $SUBJECT $SESSION $SCAN"
 ${IMMAGDIR}/convert \
 -size 2600x3365 xc:white \
 -gravity center \( page1.png -resize 2400x \) -composite \
--gravity North -pointsize 48 -annotate +100+100 \
+-gravity North -pointsize 48 -annotate +0+100 \
 "SUIT Cerebellar Segmentation, modulated images in atlas space" \
 -gravity SouthEast -pointsize 48 -annotate +100+100 "$(date)" \
 page1.png
@@ -93,7 +93,7 @@ info_string="$PROJECT $SUBJECT $SESSION $SCAN"
 ${IMMAGDIR}/convert \
 -size 2600x3365 xc:white \
 -gravity center \( page2.png -resize 2400x \) -composite \
--gravity North -pointsize 48 -annotate +100+100 \
+-gravity North -pointsize 48 -annotate +0+100 \
 "SUIT Cerebellar Segmentation, modulated images in atlas space" \
 -gravity SouthEast -pointsize 48 -annotate +100+100 "$(date)" \
 page2.png
