@@ -1,9 +1,13 @@
 # cersuit
 
-Cerebellar segmentation with the [SUIT atlas and toolbox](http://diedrichsenlab.org/imaging/suit.htm). Matlab code is in the `src` directory, and the entrypoint is `src/cersuit.m`. Compiled Matlab code for use in the singularity container without a Matlab license is in `bin`.
+Cerebellar segmentation with the [SUIT atlas and toolbox](http://diedrichsenlab.org/imaging/suit.htm). In the container, the pipeline is installed in the `/opt/cersuit` directory. Matlab code is in the `src` directory, and the entrypoint is `src/cersuit.m`. Compiled Matlab code for use in the singularity container without a Matlab license is in `bin`.
+
+See the `external` directory for links, references, and license information for the underlying SPM12 and SUIT Matlab software. [FSL version 6.0.2](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) is also used for image file manipulation and creating the QA PDF.
+
+The container has a full installation of both SPM12 (compiled) and FSL. However, the SPM12 GUI will probably not run correctly due to some missing graphics libraries in the container OS.
 
 
-## References
+## References for SUIT
 
 - [Diedrichsen, J. (2006). A spatially unbiased atlas template of the human cerebellum. Neuroimage, 33, 1, p. 127-138.](https://doi.org/10.1016/j.neuroimage.2006.05.056)
 
