@@ -87,6 +87,7 @@ ${IMMAGDIR}/convert \
 -gravity North -pointsize 48 -annotate +0+100 \
 "SUIT Cerebellar Segmentation, modulated images in atlas space" \
 -gravity SouthEast -pointsize 48 -annotate +100+100 "$(date)" \
+-gravity NorthWest -pointsize 48 -annotate +100+200 "${info_string}" \
 page1.png
 
 info_string="$PROJECT $SUBJECT $SESSION $SCAN"
@@ -96,6 +97,7 @@ ${IMMAGDIR}/convert \
 -gravity North -pointsize 48 -annotate +0+100 \
 "SUIT Cerebellar Segmentation, modulated images in atlas space" \
 -gravity SouthEast -pointsize 48 -annotate +100+100 "$(date)" \
+-gravity NorthWest -pointsize 48 -annotate +100+200 "${info_string}" \
 page2.png
 
 convert page1.png page2.png cersuit.pdf
