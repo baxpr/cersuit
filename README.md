@@ -18,7 +18,18 @@ The container has a full installation of both SPM12 (compiled) and FSL. However,
 - [Diedrichsen, J. & Zotow, E. (2015). Surface-based display of volume-averaged cerebellar data. PLoS One, 7, e0133402.](https://doi.org/10.1371/journal.pone.0133402)
 
 
+## Pipeline
+
+- Rigid body coregistration
+
+- ...
+
+
+
 ## Usage of the singularity container
+
+
+### Main processing pipeline
 
     singularity run --contain --cleanenv \
       --home <temporary-home-dir> \
@@ -33,6 +44,11 @@ The container has a full installation of both SPM12 (compiled) and FSL. However,
       subject <subject-name> \
       session <session-name> \
       scan <scan-name>
+
+### Apply an estimated warp to additional images
+
+
+(This can also be done directly with the ??? matlab functions in `src`).
 
 
 ## Parameters and inputs
@@ -55,8 +71,9 @@ PDF report for quality assurance
 
     PDF               cersuit.pdf
 
-Transformation from native to atlas space
+Transformation from native to atlas space. Apply in this order
 
+    RIGID             coreg_t1_to_mni.mat
     AFFINE            Affine_c_t1_seg1.mat
     FLOWFIELD         u_a_c_t1_seg1.nii.gz
 
