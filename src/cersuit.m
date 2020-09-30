@@ -5,7 +5,10 @@ function cersuit(varargin)
 P = inputParser;
 
 % T1 image (.nii.gz)
-addOptional(P,'t1_niigz','../INPUTS/T1.nii.gz');
+addOptional(P,'t1_niigz','../INPUTS/t1.nii.gz');
+
+% Native space gray matter segmentation of the T1 image
+addOptional(P,'gm_niigz','../INPUTS/gm.nii.gz');
 
 % Masking threshold for suit_isolate_seg
 addOptional(P,'maskp','0.2');
