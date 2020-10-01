@@ -193,5 +193,5 @@ ${IMMAGDIR}/convert \
 -gravity NorthWest -pointsize 48 -annotate +100+200 "${info_string}" \
 page4.png
 
-convert page1.png page2.png page3.png page4.png cersuit.pdf
+${IMMAGDIR}/convert page1.png page2.png page3.png page4.png cersuit.pdf
 
