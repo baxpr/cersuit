@@ -6,12 +6,12 @@ function mtx_file = init_coreg(src_nii,out_dir)
 % later.	
 
 % Make target gray matter from MNI atlas
-gm_file = [spm('dir') '/tpm/TPM.nii,1'];
-gmV = spm_vol(gm_file);
+gm_nii = [spm('dir') '/tpm/TPM.nii,1'];
+gmV = spm_vol(gm_nii);
 gm = spm_read_vols(gmV);
 tgtV = rmfield(gmV,'pinfo');
-tgt_file = [out_dir '/coreg_tgt.nii'];
-tgtV.fname = tgt_file;
+tgt_nii = [out_dir '/coreg_tgt.nii'];
+tgtV.fname = tgt_nii;
 spm_write_vol(tgtV,gm);
 
 % Find image centers of mass
