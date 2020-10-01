@@ -81,7 +81,7 @@ job.interp = 0;
 for m = {'Lobules-SUIT','Buckner_7Networks','Buckner_17Networks','Ji_10Networks','MDTB_10Regions'}
 	job.resample = {[spm('dir') '/toolbox/suit/atlasesSUIT/' m{1} '.nii']};
 	suit_reslice_dartel_inv(job);
-	apply_reverse_coreg(coreg_txt,['iw_' m{1} '_u_a_c_rt1_seg1.nii.gz']);
+	apply_reverse_coreg(coreg_txt,['iw_' m{1} '_u_a_c_rt1_seg1.nii']);
 end
 
 % Copy atlas space atlases
