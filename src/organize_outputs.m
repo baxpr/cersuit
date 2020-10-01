@@ -1,11 +1,19 @@
 function organize_outputs(out_dir)
 
 cd(out_dir);
-%delete('t1.nii');
-%delete('t1_seg8.mat');
-%delete('c1t1.nii');
-%delete('c2t1.nii');
-%delete('c7t1.nii');
-%delete('c8t1.nii');
-%delete('y_t1.nii');
+
 system('gzip *.nii');
+
+mkdir('ATLASES_NATIVE')
+movefile('iw_Buckner_17Networks_u_a_c_rt1_seg1.nii.gz','ATLASES_NATIVE');
+movefile('iw_Buckner_7Networks_u_a_c_rt1_seg1.nii.gz','ATLASES_NATIVE');
+movefile('iw_Ji_10Networks_u_a_c_rt1_seg1.nii.gz','ATLASES_NATIVE');
+movefile('iw_Lobules-SUIT_u_a_c_rt1_seg1.nii.gz','ATLASES_NATIVE');
+movefile('iw_MDTB_10Regions_u_a_c_rt1_seg1.nii.gz','ATLASES_NATIVE');
+
+mkdir('ATLASES_SUIT')
+movefile('Buckner_17Networks.nii.gz','ATLASES_SUIT');
+movefile('Buckner_7Networks.nii.gz','ATLASES_SUIT');
+movefile('Ji_10Networks.nii.gz','ATLASES_SUIT');
+movefile('Lobules-SUIT.nii.gz','ATLASES_SUIT');
+movefile('MDTB_10Regions.nii.gz','ATLASES_SUIT');

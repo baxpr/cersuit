@@ -90,6 +90,12 @@ for m = {'Lobules-SUIT','Buckner_7Networks','Buckner_17Networks','Ji_10Networks'
 	copyfile([spm('dir') '/toolbox/suit/atlasesSUIT/' m{1} '.nii'],out_dir);
 end
 
+% Get the native space output images back to pre-coreg native space
+% (original T1 space). Header is updated in place.
+for m = {'c_rt1','c_rt1_pcereb','c_rt1_seg1','c_rt1_seg2'}
+	apply_reverse_coreg(coreg_txt,[m{1} '.nii']);
+end
+
 % Regional voxel counts and volumes in subject space. suit_vol does not
 % compute the voxel volume correctly, so we use our own code.
 disp('Regional volumes')
