@@ -15,82 +15,82 @@ cd ${OUTDIR}
 fsleyes render -of atlas_over_gray.png \
   --scene ortho --worldLoc 0.0 -56.0 -33.0 --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg1 --overlayType volume --displayRange 0.0 1.5 \
+  wdc_rt1_seg1 --overlayType volume --displayRange 0.0 1.5 \
   Lobules-SUIT --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of atlas_over_white.png \
   --scene ortho --worldLoc 0.0 -56.0 -33.0 --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg2 --overlayType volume --displayRange 0.0 1.5 \
+  wdc_rt1_seg2 --overlayType volume --displayRange 0.0 1.5 \
   Lobules-SUIT --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_gray.png \
   --scene ortho --worldLoc 0.0 -56.0 -33.0 --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg1 --overlayType volume --displayRange 0.0 1.5 \
-  wc_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  wdc_rt1_seg1 --overlayType volume --displayRange 0.0 1.5 \
+  wc_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_white.png \
   --scene ortho --worldLoc 0.0 -56.0 -33.0 --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg2 --overlayType volume --displayRange 0.0 1.5 \
-  wc_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  wdc_rt1_seg2 --overlayType volume --displayRange 0.0 1.5 \
+  wc_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 # Create lateral views, atlas space
 fsleyes render -of atlas_over_gray_2.png \
   --scene ortho --worldLoc 32 -42 -52 --displaySpace world \
   --xcentre 0 0 --ycentre 0 0 --zcentre 0 0 \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg1 --overlayType volume --displayRange 0.0 1.5 \
+  wdc_rt1_seg1 --overlayType volume --displayRange 0.0 1.5 \
   Lobules-SUIT --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of atlas_over_white_2.png \
   --scene ortho --worldLoc 32 -42 -52 --displaySpace world \
   --xcentre 0 0 --ycentre 0 0 --zcentre 0 0 \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg2 --overlayType volume --displayRange 0.0 1.5 \
+  wdc_rt1_seg2 --overlayType volume --displayRange 0.0 1.5 \
   Lobules-SUIT --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_gray_2.png \
   --scene ortho --worldLoc 32 -42 -52 --displaySpace world \
   --xcentre 0 0 --ycentre 0 0 --zcentre 0 0 \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg1 --overlayType volume --displayRange 0.0 1.5 \
-  wc_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  wdc_rt1_seg1 --overlayType volume --displayRange 0.0 1.5 \
+  wc_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_white_2.png \
   --scene ortho --worldLoc 32 -42 -52 --displaySpace world \
   --xcentre 0 0 --ycentre 0 0 --zcentre 0 0 \
   --layout horizontal --hideCursor --hideLabels \
-  wdc_t1_seg2 --overlayType volume --displayRange 0.0 1.5 \
-  wc_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  wdc_rt1_seg2 --overlayType volume --displayRange 0.0 1.5 \
+  wc_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 # Medial views, native space
-maskcom=$(fslstats c_t1_pcereb -c)
+maskcom=$(fslstats c_rt1_pcereb -c)
 
 fsleyes render -of atlas_over_gray_native.png \
   --scene ortho --worldLoc $maskcom --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg1 --overlayType volume --displayRange 0 1 \
-  iw_Lobules-SUIT_u_a_c_t1_seg1 --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg1 --overlayType volume --displayRange 0 1 \
+  iw_Lobules-SUIT_u_a_c_rt1_seg1 --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of atlas_over_white_native.png \
   --scene ortho --worldLoc $maskcom --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg2 --overlayType volume --displayRange 0 1 \
-  iw_Lobules-SUIT_u_a_c_t1_seg1 --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg2 --overlayType volume --displayRange 0 1 \
+  iw_Lobules-SUIT_u_a_c_rt1_seg1 --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_gray_native.png \
   --scene ortho --worldLoc $maskcom --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg1 --overlayType volume --displayRange 0 1 \
-  c_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg1 --overlayType volume --displayRange 0 1 \
+  c_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_white_native.png \
   --scene ortho --worldLoc $maskcom --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg2 --overlayType volume --displayRange 0 1 \
-  c_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg2 --overlayType volume --displayRange 0 1 \
+  c_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 
 # Lateral views, native space
@@ -104,26 +104,26 @@ Z=$(echo "${XYZ[2]} +-18" | bc -l)
 fsleyes render -of atlas_over_gray_native_2.png \
   --scene ortho --worldLoc $X $Y $Z --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg1 --overlayType volume --displayRange 0 1 \
-  iw_Lobules-SUIT_u_a_c_t1_seg1 --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg1 --overlayType volume --displayRange 0 1 \
+  iw_Lobules-SUIT_u_a_c_rt1_seg1 --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of atlas_over_white_native_2.png \
   --scene ortho --worldLoc $X $Y $Z --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg2 --overlayType volume --displayRange 0 1 \
-  iw_Lobules-SUIT_u_a_c_t1_seg1 --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg2 --overlayType volume --displayRange 0 1 \
+  iw_Lobules-SUIT_u_a_c_rt1_seg1 --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_gray_native_2.png \
   --scene ortho --worldLoc $X $Y $Z --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg1 --overlayType volume --displayRange 0 1 \
-  c_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg1 --overlayType volume --displayRange 0 1 \
+  c_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 fsleyes render -of mask_over_white_native_2.png \
   --scene ortho --worldLoc $X $Y $Z --displaySpace world \
   --layout horizontal --hideCursor --hideLabels \
-  c_t1_seg2 --overlayType volume --displayRange 0 1 \
-  c_t1_pcereb --overlayType label --lut random --outline --outlineWidth 2
+  c_rt1_seg2 --overlayType volume --displayRange 0 1 \
+  c_rt1_pcereb --overlayType label --lut random --outline --outlineWidth 2
 
 
 

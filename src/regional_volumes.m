@@ -11,9 +11,9 @@ labels.Properties.VariableNames = {'Label','Region'};
 % Compute volumes for each label
 Vseg = spm_vol([out_dir '/iw_Lobules-SUIT_u_a_c_rt1_seg1.nii']);
 seg = spm_read_vols(Vseg);
-Vgm = spm_vol([out_dir '/c_t1_seg1.nii']);
+Vgm = spm_vol([out_dir '/c_rt1_seg1.nii']);
 gm = spm_read_vols(Vgm);
-Vwm = spm_vol([out_dir '/c_t1_seg2.nii']);
+Vwm = spm_vol([out_dir '/c_rt1_seg2.nii']);
 wm = spm_read_vols(Vwm);
 voxvol = abs(det(Vseg.mat(1:3,1:3)));
 for k = 1:height(labels)
