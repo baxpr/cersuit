@@ -71,21 +71,24 @@ for m = {'c_rt1_seg1.nii','c_rt1_seg2.nii'}
 end
 
 % Resample the atlas to subject space
-FIXME % INVERT the initial coreg also
-FIXME % Add all atlases
-disp('Resample atlas')
+disp('Resample atlases')
 job = struct();
 job.Affine = {'Affine_c_rt1_seg1.mat'};
 job.flowfield = {'u_a_c_rt1_seg1.nii'};
 job.subj.mask = {'c_rt1_pcereb.nii'};
-job.resample = {[spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii']};
 job.ref = {'c_rt1.nii'};
 job.interp = 0;
-suit_reslice_dartel_inv(job);
+for m = {'Lobules-SUIT','Buckner_7Networks','Buckner_17Networks','Ji_10Networks','MDTB_10Regions'}
+	job.resample = {[spm('dir') '/toolbox/suit/atlasesSUIT/' m{1} '.nii']};
+	suit_reslice_dartel_inv(job);
+	apply_reverse_coreg(coreg_txt,['iw_' m{1} '_u_a_c_rt1_seg1.nii.gz']);
+end
 
-% Copy atlas space atlas
-disp('Copy atlas')
-copyfile([spm('dir') '/toolbox/suit/atlasesSUIT/Lobules-SUIT.nii'],out_dir);
+% Copy atlas space atlases
+disp('Copy atlases')
+for m = {'Lobules-SUIT','Buckner_7Networks','Buckner_17Networks','Ji_10Networks','MDTB_10Regions'}
+	copyfile([spm('dir') '/toolbox/suit/atlasesSUIT/' m{1} '.nii'],out_dir);
+end
 
 % Regional voxel counts and volumes in subject space. suit_vol does not
 % compute the voxel volume correctly, so we use our own code.
