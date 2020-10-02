@@ -4,7 +4,7 @@ Cerebellar segmentation with the [SUIT atlas and toolbox](http://diedrichsenlab.
 
 See the `external` directory for links, references, and license information for the underlying SPM12 and SUIT Matlab software. [FSL version 6.0.2](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) is also used for image file manipulation and creating the QA PDF.
 
-The container has a full installation of both SPM12 (compiled) and FSL. However, the SPM12 GUI will probably not run correctly due to some missing graphics libraries in the container OS.
+The container has a full installation of both SPM12 (compiled) and FSL.
 
 
 ## References for SUIT
