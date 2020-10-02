@@ -8,7 +8,7 @@ singularity run \
   --bind OUTPUTS:/tmp \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
-  baxpr-cersuit-master-v2.0.0.simg \
+  baxpr-cersuit-master-v2.0.1.simg \
   out_dir /OUTPUTS \
   t1_niigz /INPUTS/T1.nii.gz \
   gm_niigz /INPUTS/gm.nii.gz \
@@ -29,7 +29,7 @@ singularity exec \
   --bind OUTPUTS2:/tmp \
   --bind OUTPUTS:/INPUTS \
   --bind OUTPUTS2:/OUTPUTS \
-  baxpr-cersuit-master-v2.0.0.simg \
+  baxpr-cersuit-master-v2.0.1.simg \
   xwrapper.sh function transform_native_to_SUIT \
   out_dir /OUTPUTS \
   src_niigz /INPUTS/testt1.nii.gz \
@@ -47,11 +47,11 @@ exit 0
 singularity exec \
   --contain \
   --cleanenv \
-  --home $(pwd)/OUTPUTS \
-  --bind OUTPUTS:/tmp \
-  --bind INPUTS:/INPUTS \
-  --bind OUTPUTS:/OUTPUTS \
-  baxpr-cersuit-master-v2.0.0.simg \
+  --home $(pwd)/OUTPUTS2 \
+  --bind OUTPUTS2:/tmp \
+  --bind OUTPUTS:/INPUTS \
+  --bind OUTPUTS2:/OUTPUTS \
+  baxpr-cersuit-master-v2.0.1.simg \
   xwrapper.sh function transform_SUIT_to_native \
   out_dir /OUTPUTS \
   src_nii /INPUTS/MNI152_T1_1mm.nii.gz \
