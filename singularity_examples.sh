@@ -8,7 +8,7 @@ singularity run \
   --bind OUTPUTS:/tmp \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
-  baxpr-cersuit-master-v2.0.1.simg \
+  baxpr-cersuit-master-v2.0.2.simg \
   out_dir /OUTPUTS \
   t1_niigz /INPUTS/T1.nii.gz \
   gm_niigz /INPUTS/gm.nii.gz \
@@ -29,7 +29,7 @@ singularity exec \
   --bind OUTPUTS2:/tmp \
   --bind OUTPUTS:/INPUTS \
   --bind OUTPUTS2:/OUTPUTS \
-  baxpr-cersuit-master-v2.0.1.simg \
+  baxpr-cersuit-master-v2.0.2.simg \
   xwrapper.sh function transform_native_to_SUIT \
   out_dir /OUTPUTS \
   src_niigz /INPUTS/testt1.nii.gz \
@@ -51,14 +51,14 @@ singularity exec \
   --bind OUTPUTS2:/tmp \
   --bind OUTPUTS:/INPUTS \
   --bind OUTPUTS2:/OUTPUTS \
-  baxpr-cersuit-master-v2.0.1.simg \
+  baxpr-cersuit-master-v2.0.2.simg \
   xwrapper.sh function transform_SUIT_to_native \
   out_dir /OUTPUTS \
   src_nii /INPUTS/MNI152_T1_1mm.nii.gz \
-  mask_nii /OUTPUTS/c_rt1_pcereb.nii.gz \
-  coreg_txt /OUTPUTS/init_coreg_mat.txt \
-  affine_mat /OUTPUTS/Affine_c_rt1_seg1.mat \
-  flow_nii /OUTPUTS/u_a_c_rt1_seg1.nii.gz \
+  mask_nii /INPUTS/c_rt1_pcereb.nii.gz \
+  coreg_txt /INPUTS/init_coreg_mat.txt \
+  affine_mat /INPUTS/Affine_c_rt1_seg1.mat \
+  flow_nii /INPUTS/u_a_c_rt1_seg1.nii.gz \
   interp 1
   
 exit 0

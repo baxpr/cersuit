@@ -5,7 +5,7 @@ P = inputParser;
 
 % Image that will be transformed from the SUIT atlas space to the original
 % native T1 space
-addOptional(P,'src_niigz','../OUTPUTS/wc_rt1_test.nii.gz');
+addOptional(P,'src_niigz','../OUTPUTS/MNI152_T1_1mm.nii.gz');
 
 % Mask in the original native space. Also determines the geometry of the
 % output
@@ -61,11 +61,15 @@ flow_nii = fullfile(P.Results.out_dir,n);
 
 %% Do the actual transformation
 
+% First we need the mask in the intermediate coreg space to serve as our
+% geometry ref
+rmask_nii = apply_init_coreg(P.Results.coreg_txt,mask_nii,P.Results.out_dir);
+
 job = struct();
 job.Affine = {P.Results.affine_mat};
 job.flowfield = {flow_nii};
-job.subj.mask = {mask_nii};
-job.ref = {mask_nii};
+job.subj.mask = {rmask_nii};
+job.ref = {rmask_nii};
 job.interp = interp;
 job.resample = {src_nii};
 suit_reslice_dartel_inv(job);
@@ -80,6 +84,7 @@ apply_reverse_coreg(P.Results.coreg_txt,suit_out_fname);
 %% Clean up
 delete(src_nii)
 delete(mask_nii)
+delete(rmask_nii)
 delete(flow_nii)
 system(['gzip ' P.Results.out_dir '/*.nii']);
 
