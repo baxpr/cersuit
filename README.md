@@ -20,35 +20,22 @@ The container has a full installation of both SPM12 (compiled) and FSL. However,
 
 ## Pipeline
 
-- Rigid body coregistration
+- Adjustment of the source T1 file to axial data ordering using fslreorient2std, to meet a requirement of the SUIT toolbox.
 
-- ...
+- Rigid body coregistration of the supplied gray matter image to SPM12's gray matter probabilistic atlas (TPM.nii). The supplied gray matter image must be in register with the supplied T1. The estimated registration is saved to file and also applied to the T1.
 
+- SUIT estimation of the affine transformation and warp of the cerebellar area of the T1 to the SUIT atlas.
+
+- Resampling of the T1 and related images to the SUIT atlas space. Gray matter and white matter images are resampled both with and without modulation by the Jacobian.
+
+- Resampling of the SUIT-supplied atlases to the original T1 native space.
+
+- Computation of regional volumes for the Lobules_SUIT atlas in the native T1 space.
 
 
 ## Usage of the singularity container
 
-
-### Main processing pipeline
-
-    singularity run --contain --cleanenv \
-      --home <temporary-home-dir> \
-      --bind <tmp-dir>:/tmp \
-      --bind <input-dir>:/INPUTS \
-      --bind <output-dir>:/OUTPUTS \
-      <cersuit-container-name>.simg \
-      out_dir /OUTPUTS \
-      t1_niigz /INPUTS/<t1-niigz-filename> \
-      maskp <mask-threshold> \
-      project <project-name> \
-      subject <subject-name> \
-      session <session-name> \
-      scan <scan-name>
-
-### Apply an estimated warp to additional images
-
-
-(This can also be done directly with the ??? matlab functions in `src`).
+See `singularity_examples.sh` for examples of using the container for SUIT warp estimation, and transformation from native to SUIT space and back using an existing estimated warp. The transformations can also be done directly from matlab with the `transform_???.m` functions in `src`).
 
 
 ## Parameters and inputs
@@ -98,11 +85,10 @@ Jacobian-modulated gray and white matter images in atlas space
 
 Segmented regions in native and atlas space, with lookup table
 
-    SEG_NATIVE        iw_Lobules-SUIT_u_a_c_t1_seg1.nii.gz
-    SEG_SUIT          Lobules-SUIT.nii.gz
-    SEG_LUT           Lobules-SUIT-lut.txt
+    ATLASES_NATIVE    SUIT-supplied atlases resampled to original T1 space
+    ATLASES_SUIT      The SUIT-supplied atlases themselves
 
 Volumetry of segmented regions, computed from native space images. The "Total" is the volume of the atlas region after transformation to native space. The "Gray" is the sum of voxel gray matter fraction within the atlas region, in native space; similar for "White".
 
-    SEG_NATIVE_VOLS   iw_Lobules-SUIT_u_a_c_t1_seg1-volumes.csv
+    NATIVE_VOLS       iw_Lobules-SUIT_u_a_c_t1_seg1-volumes.csv
 
