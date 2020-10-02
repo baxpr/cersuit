@@ -5,10 +5,11 @@ P = inputParser;
 
 % Image that will be transformed from the SUIT atlas space to the original
 % native T1 space
-addOptional(P,'src_nii','../OUTPUTS/wc_rt1_test.nii');
+addOptional(P,'src_niigz','../OUTPUTS/wc_rt1_test.nii.gz');
 
-% Mask in the original native space
-addOptional(P,'mask_nii','../OUTPUTS/c_rt1_pcereb.nii');
+% Mask in the original native space. Also determines the geometry of the
+% output
+addOptional(P,'mask_niigz','../OUTPUTS/c_rt1_pcereb.nii.gz');
 
 % Initial rigid body coregistration of T1 to atlas (RIGID output of
 % cersuit)
@@ -18,13 +19,13 @@ addOptional(P,'coreg_txt','../OUTPUTS/init_coreg_mat.txt');
 addOptional(P,'affine_mat','../OUTPUTS/Affine_c_rt1_seg1.mat');
 
 % SUIT deformation/flowfield (FLOWFIELD)
-addOptional(P,'flow_nii','../OUTPUTS/u_a_c_rt1_seg1.nii');
+addOptional(P,'flow_niigz','../OUTPUTS/u_a_c_rt1_seg1.nii.gz');
 
 % Interpolation to use
 addOptional(P,'interp','0');
 
 % Where to store outputs
-addOptional(P,'out_dir','../OUTPUTS');
+addOptional(P,'out_dir','../OUTPUTS2');
 
 
 % Parse
@@ -41,25 +42,48 @@ end
 disp(P.Results)
 
 
+%% Copy/unzip nii.gz
+copyfile(P.Results.src_niigz,P.Results.out_dir);
+[~,n,e] = fileparts(P.Results.src_niigz);
+system(['gunzip ' fullfile(P.Results.out_dir,[n e])]);
+src_nii = fullfile(P.Results.out_dir,n);
+
+copyfile(P.Results.mask_niigz,P.Results.out_dir);
+[~,n,e] = fileparts(P.Results.mask_niigz);
+system(['gunzip ' fullfile(P.Results.out_dir,[n e])]);
+mask_nii = fullfile(P.Results.out_dir,n);
+
+copyfile(P.Results.flow_niigz,P.Results.out_dir);
+[~,n,e] = fileparts(P.Results.flow_niigz);
+system(['gunzip ' fullfile(P.Results.out_dir,[n e])]);
+flow_nii = fullfile(P.Results.out_dir,n);
+
+
 %% Do the actual transformation
 
 job = struct();
 job.Affine = {P.Results.affine_mat};
-job.flowfield = {P.Results.flow_nii};
-job.subj.mask = {P.Results.mask_nii};
-job.ref = {P.Results.src_nii};
+job.flowfield = {flow_nii};
+job.subj.mask = {mask_nii};
+job.ref = {mask_nii};
 job.interp = interp;
-job.resample = {P.Results.src_nii};
+job.resample = {src_nii};
 suit_reslice_dartel_inv(job);
 
-[ps,ns] = fileparts(P.Results.src_nii);
-[~,nf] = fileparts(P.Results.flow_nii);
+[ps,ns] = fileparts(src_nii);
+[~,nf] = fileparts(flow_nii);
 suit_out_fname = fullfile(ps,['iw_' ns '_' nf '.nii']);
 
 apply_reverse_coreg(P.Results.coreg_txt,suit_out_fname);
 
-if ~strcmp(ps,P.Results.out_dir)
-	movefile(suit_out_fname,P.Results.out_dir);
-end
 
+%% Clean up
+delete(src_nii)
+delete(mask_nii)
+delete(flow_nii)
+system(['gzip ' P.Results.out_dir '/*.nii']);
+
+if isdeployed
+	exit
+end
 
