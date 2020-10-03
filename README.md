@@ -22,7 +22,7 @@ The container has a full installation of both SPM12 (compiled) and FSL.
 
 - Adjustment of the source T1 file to axial data ordering using fslreorient2std, to meet a requirement of the SUIT toolbox.
 
-- Rigid body coregistration of the supplied gray matter image to SPM12's gray matter probabilistic atlas (TPM.nii). The supplied gray matter image must be in register with the supplied T1. The estimated registration is saved to file and also applied to the T1.
+- Translation-only alignment of the supplied gray matter image to SPM12's gray matter probabilistic atlas (TPM.nii). This is accomplished by aligning the centers of mass. Rotations are not estimated, to avoid an issue with SUIT's bounding box computation. The supplied gray matter image must be in register with the supplied T1. The estimated registration is saved to file and also applied to the T1.
 
 - SUIT estimation of the affine transformation and warp of the cerebellar area of the T1 to the SUIT atlas.
 
