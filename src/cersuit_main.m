@@ -17,7 +17,7 @@ system(['FSLDIR=' inp.fsl_dir ' ' inp.src_dir '/initial_reorient.sh']);
 spm_jobman('initcfg');
 
 % Initial coreg of T1 to atlas via gray matter segmentation
-coreg_txt = init_coreg('gm.nii',out_dir);
+coreg_txt = init_coreg_translation_only('gm.nii',out_dir);
 apply_init_coreg(coreg_txt,'t1.nii',out_dir);
 
 % Segment the cerebellum
